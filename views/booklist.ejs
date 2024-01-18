@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('partial/head', {pageTitle:"Books"})%>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-2"><%- include ('./partial/sidebar')%></div>
+        <div class="col-sm-10">
+          <h1><%= title%></h1>
+          <% if(book_list.length) {%>
+          <ul>
+            <% book_list.forEach(function(book) { %>
+            <li>
+              <a href="book.url"><%= book.title %></a>
+              <%= book.author.name%>
+            </li>
+            <% }); %>
+          </ul>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
