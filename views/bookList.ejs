@@ -13,7 +13,7 @@
           <ul>
             <% book_list.forEach(function(book) { %>
             <li>
-              <a href="book.url"><%= book.title %></a>
+              <a href="<%= book.url%>"><%= book.title %></a>
               <%= book.author.name%>
             </li>
             <% }); %>

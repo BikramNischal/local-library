@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include ('partial/head' , {pageTitle: "Genre List" }); %>
+  </head>
+
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-2"><%- include ('./partial/sidebar')%></div>
+        <div class="col-sm-10">
+          <h1><%= title %></h1>
+          <ul>
+            <% if(genre_list.length) {%>
+            <ul>
+              <% genre_list.forEach(function(genre) {%>
+                <li>
+                    <a href="<%=genre.url%>"><%=genre.name%></a>
+                </li>
+              <%})%>
+            </ul>
+            <%} else {%>
+            <p>There is no genres.</p>
+            <%}%>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
