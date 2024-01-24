@@ -12,15 +12,15 @@
           <h1>Title: <%= title %></h1>
           <p>
             <strong>Author: </strong>
-            <a href="<% book.author.url %>"><% book.author.name %></a>
+            <a href="<%= book.author.url %>"><%=book.author.name %></a>
           </p>
           <p>
             <strong>Summary:</strong>
-            <% book.summary %>
+            <%= book.summary %>
           </p>
           <p>
             <strong>ISBN:</strong>
-            <% book.isbn %>
+            <%= book.isbn %>
           </p>
           <p>
             <strong>Genre:</strong>

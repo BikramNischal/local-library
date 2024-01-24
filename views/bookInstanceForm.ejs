@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include ('partial/head' , {pageTitle: title}); %>
+  </head>
+
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-2"><%- include ('./partial/sidebar')%></div>
+        <div class="col-sm-10">
+          <h1><%= title %></h1>
+          <form method="POST">
+            <div class="form-group">
+              <label for="book">Book:</label>
+              <select id="book" class="form-control" name="book" required>
+                <option value="">--Please select a book--</option>
+                <% book_list.forEach(function(book){%> <%
+                if(locals.selected_book && selected_book ==
+                book._id.toString()){ %>
+                <option value="<%= book._id %>"><%= book.title %></option>
+                <%} else {%>
+                <option value="<%= book._id %>"><%= book.title %></option>
+                <%}})%>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="imprint">Imprint:</label>
+              <input
+                id="imprint"
+                class="form-control"
+                type="text"
+                placeholder="Publisher and date information"
+                name="imprint"
+                required
+                value="<%= (!locals.bookinstance) ? '' : bookinstance.imprint%>"
+              />
+            </div>
+            <div class="form-group">
+              <label for="due_back">Date when book available</label>
+              <input
+                id="due_back"
+                name="due_back"
+                class="form-control"
+                type="date"
+                value="<%= (locals.bookinstance) ? bookinstance.due_back_yyyy_mm_dd : ''%>"
+              />
+            </div>
+            <div class="form-group">
+              <label for="status">Status: </label>
+              <select id="status" class="form-control" required>
+                <option value="">--Please select a status--</option>
+                <% status_list.forEach(function(status){%> <%
+                if(locals.bookinstance && bookinstance.status != status){%>
+                <option value="<%=status%>"><%=status%></option>
+                <%}else{%>
+                <option value="<%=status%>"><%=status%></option>
+                <%}})%>
+              </select>
+            </div>
+            <button class="btn btn-primary" type="submit">Submit</button>
+          </form>
+          <% if(locals.errors){%>
+          <ul>
+            <% errors.forEach(function(error){%>
+            <li>error.msg</li>
+            <%})%>
+          </ul>
+          <%}%>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
