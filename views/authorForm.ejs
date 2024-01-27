@@ -20,7 +20,7 @@
                 placeholder="First name (Christian)"
                 name="first_name"
                 required
-                value="<%= (locals.author) ? author.frist_name :''%>"
+                value="<%= (locals.author) ? author.first_name :''%>"
               />
               <label for="last_name">Last Name:</label>
               <input
@@ -42,13 +42,13 @@
                 name="date_of_birth"
                 value="<%= (locals.author) ? author.date_of_birth : '' %>"
               />
-              <label for="date_of_death">Date Of Birth</label>
+              <label for="date_of_death">Date Of Death</label>
               <input
                 id="date_of_death"
                 class="form-control"
                 type="date"
                 name="date_of_death"
-                value="<%= (locals.author) ? author.date_of_death : '' %>"
+                value="<%= (locals.author) ? author.date_of_death : ' ' %>"
               />
             </div>
             <button class="btn btn-primary" type="submit">Submit</button>

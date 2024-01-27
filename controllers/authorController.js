@@ -56,9 +56,8 @@ exports.author_create_post = [
         .isISO8601()
         .toDate(),
     body("date_of_death", "Invalid date of death.")
-       .optional({vlaues: "falsy"})
-        .isISO8601()
         .toDate(),
+
      asyncHandler(async (req, res, next) => {
         const errors = validationResult(req);
 
@@ -85,12 +84,40 @@ exports.author_create_post = [
 
 // Display Author delete form on GET.
 exports.author_delete_get = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Author delete GET");
+    const [author, allBookByAuthor] = await Promise.all([
+        Author.findById(req.params.id).exec(),
+        Book.find({author: req.params.id}, "title summary").exec(),
+    ]);
+
+    if(author == null){
+        res.redirect("/catalog/authors");
+    }
+
+    res.render("authorDelete", {
+        title: "Delete Author",
+        author: author,
+        author_books:allBookByAuthor,
+    })
 });
 
 // Handle Author delete on POST.
 exports.author_delete_post = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Author delete POST");
+    const [author, allBookByAuthor] = await Promise.all([
+        Author.findById(req.params.id).exec(),
+        Book.find({author:req.params.id}, "title summary").exec(),
+    ]);
+
+    if(allBookByAuthor.length > 0){
+        res.render("authorDelete",{
+            title: "Delete Author",
+            author: author,
+            author_books: allBookByAuthor,
+        });
+        return;
+    } else {
+        await Author.findByIdAndDelete(req.body.authorid);
+        res.redirect("/catalog/authors");
+    }
 });
 
 // Display Author update form on GET.

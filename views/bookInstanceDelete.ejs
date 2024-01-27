@@ -30,10 +30,21 @@
           <% if (bookinstance.status != 'Available') {%>
           <p><strong>Due Back:</strong><%=bookinstance.due_date_formatted %></p>
           <% } %>
+
           <hr />
-          <p>
-            <a href="<%= bookinstance.url+'/delete' %>"> Delete Book Copy</a>
-          </p>
+          <p>Do you really want to delete this Book?</p>
+          <form method="post">
+            <div class="form-group">
+              <input
+                type="hidden"
+                name="bookinstanceid"
+                id="#bookinstanceid"
+                class="form-control"
+                value="<%=bookinstance._id%>"
+              >
+            </div>
+            <button class="btn btn-primary" type="submit">Delete</button>
+          </form>
         </div>
       </div>
     </div>

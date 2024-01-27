@@ -9,7 +9,7 @@
       <div class="row">
         <div class="col-sm-2"><%- include ('./partial/sidebar')%></div>
         <div class="col-sm-10">
-          <h1>Title: <%= title %></h1>
+          <h1><%= title %>: <%=book.title %></h1>
           <p>
             <strong>Author: </strong>
             <a href="<%= book.author.url %>"><%=book.author.name %></a>
@@ -28,13 +28,10 @@
                 <a href="<%=val.url %>"><%=val.name%></a>
                 <% if(index<book.genre.length-1) {%>
                     ,&nbsp;
-                <% } %>
-            <%}) %>
-          </p>
-          <div style="margin-left:20px;margin-top:20px">
-            <h4>Copies</h4>
-            <% if(book_instance.length) {%>
-                <% book_instance.forEach(function(val){%>
+                <% }}) %>
+            </p>
+          <% if (bookinstances.length) {%>
+                <% bookinstances.forEach(function(val){%>
                     <hr>
                     <% if(val.status =='Available') {%>
                         <p class="text-success"><%= val.status %></p>
@@ -51,16 +48,16 @@
                         <a href="<%= val.url %>"><%=val._id%></a>
                     </p>
                 <%}) %>
-                <%} else{%>
-                    <p>There is no copies of this book in the library.</p>
-                    <% } %>
-            
-            </div>
-          <hr />
-          <p>
-            <a href="<%= book.url+'/delete' %>"> Delete Book</a>
-          </p>
-
+            <% } else {%>
+                <p>Do you really want to delete this Book?</p>
+                <form method="post">
+                    <div class="form-group">
+                        <input type="hidden" name="bookid" id="#bookid" class="form-control" value=<%= book._id%>>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Delete</button>
+                </form>
+                <% } %>
+          </div>
         </div>
       </div>
     </div>
