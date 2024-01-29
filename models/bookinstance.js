@@ -23,7 +23,7 @@ BookInstanceSchema.virtual("due_date_formatted").get(function(){
 });
 
 BookInstanceSchema.virtual("due_back_yyyy_mm_dd").get(function(){
-    return DateTime.fromJSDate(this.due_back).toISDate();
+    return DateTime.fromJSDate(this.due_back).toISODate();
 })
 
 

@@ -16,9 +16,9 @@
               <select id="book" class="form-control" name="book" required>
                 <option value="">--Please select a book--</option>
                 <% book_list.forEach(function(book){%> <%
-                if(locals.selected_book && selected_book ==
-                book._id.toString()){ %>
-                <option value="<%= book._id %>"><%= book.title %></option>
+                if(locals.selected_book && selected_book ===
+                    book._id.toString()){ %>
+                    <option value="<%= book._id %>" selected><%= book.title %></option>
                 <%} else {%>
                 <option value="<%= book._id %>"><%= book.title %></option>
                 <%}})%>

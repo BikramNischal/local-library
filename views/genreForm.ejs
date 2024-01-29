@@ -13,20 +13,25 @@
           <form method="POST">
             <div class="form-group">
               <label for="name">Genre: </label>
-              <input type="text" name="name" id="name" class="form-contorl"
-              placeholder="Fantasy, Poetry, etc." required value ="<%=genre.name%>">
+              <input
+                type="text"
+                name="name"
+                id="name"
+                class="form-contorl"
+                placeholder="Fantasy, Poetry, etc."
+                required
+                value="<%= (locals.genre) ? genre.name : ''%>"
+              />
               <button class="btn btn-primary" type="submit">Submit</button>
             </div>
           </form>
           <% if(locals.errors){%>
-            <ul>
-                <% errors.forEach(function(error){%>
-                    <li>
-                        <%= error.msg%>
-                    </li>
-                <%}) %>
-            </ul>
-            <% } %>
+          <ul>
+            <% errors.forEach(function(error){%>
+            <li><%= error.msg%></li>
+            <%}) %>
+          </ul>
+          <% } %>
         </div>
       </div>
     </div>

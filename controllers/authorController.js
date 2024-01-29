@@ -174,6 +174,5 @@ exports.author_update_post = [
         const updateAuthor = await Author.findByIdAndUpdate(req.params.id, author, {});
         res.redirect(updateAuthor.url);
     }
-
   }),
 ];
