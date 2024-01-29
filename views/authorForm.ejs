@@ -40,7 +40,7 @@
                 class="form-control"
                 type="date"
                 name="date_of_birth"
-                value="<%= (locals.author) ? author.date_of_birth : '' %>"
+                value="<%= (locals.author) ? author.date_of_birth_yyyy_mm_dd : '' %>"
               />
               <label for="date_of_death">Date Of Death</label>
               <input
@@ -48,7 +48,7 @@
                 class="form-control"
                 type="date"
                 name="date_of_death"
-                value="<%= (locals.author) ? author.date_of_death : ' ' %>"
+                value="<%= (locals.author) ? author.date_of_death_yyyy_mm_dd : '' %>"
               />
             </div>
             <button class="btn btn-primary" type="submit">Submit</button>
