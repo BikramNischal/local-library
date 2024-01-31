@@ -14,7 +14,7 @@ const mongoose  = require("mongoose");
 mongoose.set("strictQuery", false);
 const libraryDB = process.env.DB_URL;
  
-testConnection().catch(err => console.err(err));
+testConnection().catch(err => console.error(err));
 async function testConnection(){
   await mongoose.connect(libraryDB);
   debug("Database Connection Successful!");
